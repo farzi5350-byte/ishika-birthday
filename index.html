@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 from pathlib import Path
 import os
 
@@ -99,3 +100,4 @@ path.write_text(html, encoding="utf-8")
 assert "<!DOCTYPE html>" in html and "Naman quiz" in html and "catch-heart" not in html
 assert html.count("<script>") == html.count("</script>") == 1
 print(f"Created {path} ({path.stat().st_size:,} bytes).")
+</html>
