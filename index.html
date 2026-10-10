@@ -1,0 +1,101 @@
+from pathlib import Path
+import os
+
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff1f6">
+<title>For Ishika 💗</title>
+<style>
+:root{--pink:#f4a8c7;--hot:#df6797;--cream:#fffaf6;--ink:#563e4b;--lilac:#e9e0ff;--yellow:#fff0bd}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:"Trebuchet MS",system-ui,sans-serif;overflow-x:hidden}button{font:inherit;cursor:pointer}
+.paper{background:#fffdfb;border:2px solid #f7dce7;border-radius:24px;box-shadow:0 12px 35px #d68baa20}
+#gate{min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:22px;background:radial-gradient(circle at 20% 20%,#ffe2ee,transparent 32%),radial-gradient(circle at 80% 75%,#e8ddff,transparent 30%),#fff8f4}
+.gate-card{max-width:520px;width:100%;padding:clamp(25px,6vw,48px);text-align:center;position:relative}.kicker{letter-spacing:.15em;text-transform:uppercase;font-size:.75rem;color:#b46b8c;font-weight:800}h1,h2,p{margin-top:0}h1{font-family:Georgia,serif;font-size:clamp(2.5rem,10vw,4.5rem);line-height:1.03;margin:14px 0}h2{font-family:Georgia,serif;font-size:clamp(1.8rem,5vw,2.5rem)}.subtitle{line-height:1.7;color:#8a7180}.sticker{font-size:2.4rem;display:inline-block;animation:bob 2s ease-in-out infinite}.actions{display:flex;justify-content:center;gap:14px;align-items:center;flex-wrap:wrap;margin-top:25px;min-height:62px}.btn{padding:14px 22px;border-radius:999px;font-weight:800;transition:transform .18s,box-shadow .18s}.btn:active{transform:scale(.96)}.yes{background:var(--hot);color:#fff;box-shadow:0 6px 0 #c95182}.no{background:#fff;color:#856a7b;border:2px solid #f1d5e2;position:relative}
+#main{display:none}.hero{padding:65px 18px 45px;text-align:center;background:linear-gradient(145deg,#ffe7f0,#fff9ef 60%,#eee6ff);position:relative;overflow:hidden}.hero h1{color:#b94e7d}.wrap{max-width:900px;margin:auto;padding:26px 18px 65px}.section{margin:24px 0;padding:clamp(22px,5vw,36px)}.section h2{text-align:center;margin-bottom:12px}.center{text-align:center}.tape{display:inline-block;background:#ffe7a8;padding:7px 14px;transform:rotate(-3deg);font-size:.8rem;font-weight:800}
+.polaroids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:25px}.polaroid{background:#fff;padding:10px 10px 17px;box-shadow:0 7px 18px #5c40551b;transform:rotate(-2deg)}.polaroid:nth-child(2){transform:rotate(2deg);margin-top:18px}.polaroid:nth-child(3){transform:rotate(-1deg)}.photo{width:100%;aspect-ratio:4/4.4;object-fit:cover;background:linear-gradient(135deg,#ffe1ed,#e9e1ff);display:flex;align-items:center;justify-content:center;text-align:center;color:#9a6f86;padding:10px;font-size:.9rem}.polaroid p{text-align:center;margin:12px 0 0;font-family:Georgia,serif}
+.reasons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}.reason{padding:18px;border-radius:18px;background:#fff0f6;border:1px dashed #efb8cf;line-height:1.5}.reason:nth-child(2){background:#f1eaff}.reason:nth-child(3){background:#fff4c9}.reason:nth-child(4){background:#e7f6ed}
+.letter{background:#fffaf0;border:1px solid #f3d9a6;border-radius:8px;padding:25px;line-height:1.85;white-space:pre-line}.reveal{display:block;margin:18px auto 0;background:#8065ad;color:white}.hidden-note{display:none;margin-top:18px;padding:20px;background:#f1eaff;border-radius:16px;line-height:1.8;text-align:center}
+.quiz{background:linear-gradient(135deg,#fff0f6,#f1eaff);text-align:center}.quiz-progress{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#b46b8c;font-weight:800}.quiz-card{background:#fff;border:2px solid #f3d6e3;border-radius:22px;padding:clamp(20px,5vw,32px);margin-top:20px}.quiz-emoji{font-size:3rem;margin:5px 0 12px}.quiz-question{font-family:Georgia,serif;font-size:clamp(1.4rem,4vw,2rem);line-height:1.25;margin:8px 0 20px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:11px}.answer{border:2px solid #f0d7e3;background:#fff8fb;border-radius:16px;padding:15px 12px;color:#674a5a;font-weight:700;min-height:58px;transition:.18s}.answer:hover{transform:translateY(-2px);background:#ffe8f1;border-color:#e8a3bf}.answer:focus-visible,.btn:focus-visible{outline:3px solid #8065ad;outline-offset:3px}.quiz-feedback{display:none;margin:18px 0 0;padding:14px;border-radius:14px;background:#fff0bd;line-height:1.6;font-weight:700}.quiz-next{display:none;margin:16px auto 0}.quiz-result{display:none;line-height:1.8}.quiz-result .big{font-size:3.4rem}.final{background:#fff0f6;text-align:center}.final h2{color:#b94e7d}footer{text-align:center;color:#aa91a0;font-size:.85rem;padding:0 18px 35px}.floaty{position:fixed;bottom:-35px;pointer-events:none;z-index:10;animation:floatUp 3.6s linear forwards}@keyframes floatUp{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}@keyframes bob{50%{transform:translateY(-7px) rotate(3deg)}}@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@media(max-width:600px){.polaroids{grid-template-columns:1fr 1fr}.polaroid:nth-child(3){grid-column:1/-1;width:68%;justify-self:center}.reasons{grid-template-columns:1fr}.hero{padding-top:50px}.answers{grid-template-columns:1fr}.answer{min-height:52px}.gate-card{padding:28px 20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<section id="gate">
+  <div class="gate-card paper">
+    <div class="sticker">💌</div><div class="kicker">A tiny birthday mission</div>
+    <h1>Ishika,<br>do you accept?</h1>
+    <p class="subtitle">Naman has a little surprise for you.<br>Choose wisely… hehe 🙈</p>
+    <div class="actions"><button class="btn yes" id="yesBtn">YES, of course! 💖</button><button class="btn no" id="noBtn">No 🙃</button></div>
+    <p id="tease" class="subtitle" aria-live="polite" style="font-size:.85rem;margin-top:16px">Psst… one of these buttons is a little mischievous.</p>
+  </div>
+</section>
+<main id="main">
+  <header class="hero"><div class="sticker">🎂✨🎀</div><div class="kicker">Made with a whole lot of love</div><h1>Happy Birthday,<br>Ishika! 💗</h1><p class="subtitle">Today is your day. Ready for a little scrapbook of smiles?</p><button class="btn yes" onclick="document.getElementById('scrapbook').scrollIntoView({behavior:'smooth'})">Open your little surprise ↓</button></header>
+  <div class="wrap">
+    <section class="section paper" id="scrapbook"><div class="center"><span class="tape">THE ISHIKA EDITION</span></div><h2>A little scrapbook of you 🌷</h2><p class="center subtitle"></p>
+      <div class="polaroids">
+        <div class="polaroid"><img class="photo" src="ishika-1.jpg" alt="Ishika photo 1" onerror="this.outerHTML='<div class=&quot;photo&quot;>📸<br>Add images/ishika-1.jpg</div>'"><p>little moments</p></div>
+        <div class="polaroid"><img class="photo" src="ishika-2.jpg" alt="Ishika photo 2" onerror="this.outerHTML='<div class=&quot;photo&quot;>🧸<br>Add images/ishika-2.jpg</div>'"><p>big smiles</p></div>
+        <div class="polaroid"><img class="photo" src="together.jpg" alt="A favourite photo" onerror="this.outerHTML='<div class=&quot;photo&quot;>🌼<br>Add images/together.jpg</div>'"><p>our kind of magic</p></div>
+      </div>
+    </section>
+    <section class="section paper"><h2>Reasons you're a favourite 💝</h2><p class="center subtitle">A few little reminders for your birthday.</p><div class="reasons">
+      <div class="reason">🌸 <b>Your smile</b><br>It has a talent for making an ordinary day better.</div><div class="reason">🫶 <b>Your heart</b><br>The little things you do mean more than you know.</div><div class="reason">✨ <b>Your energy</b><br>You make your own kind of magic wherever you go.</div><div class="reason">💗 <b>Just being you</b><br>No big reason needed. You’re simply special.</div>
+    </div></section>
+    <section class="section paper"><h2>A little letter for you 💌</h2><div class="letter">Dear Ishika,
+
+Happy birthday to the girl who deserves all the softest moments, the loudest laughs, and the happiest surprises.
+
+I hope this new year of your life brings you a hundred reasons to smile and people who remind you how special you are. Keep being your lovely, wonderfully-you self.
+
+And yes, someone spent time making you this tiny corner of the internet. I wonder who… 👀
+
+With lots of love,
+Naman 💗</div><button class="btn reveal" id="secretBtn">Psst… open your secret note 🔐</button><div class="hidden-note" id="secretNote">✨ Secret message unlocked ✨<br><b>If I could give you one thing for your birthday, it would be the chance to see yourself through my eyes — then you'd know just how special you are. 💗</b></div></section>
+    <section class="section paper quiz" id="quiz"><div class="kicker">The Naman quiz</div><h2>Let's see how well you know your favourite person 😌</h2><p class="subtitle">Three very serious questions. Absolutely no pressure. (Okay, a little.)</p>
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-progress" id="quizProgress">Question 1 of 3</div><div class="quiz-emoji" id="quizEmoji">🤔</div><div class="quiz-question" id="quizQuestion">Who is more dramatic?</div>
+        <div class="answers" id="answers">
+          <button class="answer">Ishika, obviously 🙄</button><button class="answer">Naman, 100% 😂</button><button class="answer">Both of us 🎭</button><button class="answer">Let's not expose anyone 🤐</button>
+        </div>
+        <div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div><button class="btn yes quiz-next" id="quizNext">Next question →</button>
+        <div class="quiz-result" id="quizResult"><div class="big">🏆💗🎉</div><h2>Quiz completed!</h2><p id="resultText">You passed the Naman-certified cuteness test.</p><p><b>Final result: 100% adorable, 0% normal.</b></p><button class="btn yes" id="confettiBtn">Claim your prize ✨</button><p id="prize" style="display:none;background:#fff0bd;padding:18px;border-radius:16px">🎁 Your prize: one giant birthday hug from Naman, redeemable whenever you want. No expiry date. 💗</p></div>
+      </div>
+    </section>
+    <section class="section paper final"><div class="sticker">🎁</div><h2>One last thing…</h2><p class="subtitle">Make a wish, birthday girl. The world is a little brighter with you in it.</p><button class="btn yes" id="wishBtn">Send a little birthday magic ✨</button><p id="wishMessage" style="display:none;margin-top:20px;font-family:Georgia,serif;font-size:1.3rem;line-height:1.6">Happy birthday, Ishika. Keep shining, keep smiling, and never forget how loved you are. 💖🎂</p></section>
+  </div><footer>Made especially for Ishika, with love from Naman 💗</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const noBtn=$('noBtn');let noCount=0;
+function dodgeNo(e){if(e)e.preventDefault();noCount++;const r=noBtn.getBoundingClientRect(),pad=12;noBtn.style.position='fixed';noBtn.style.zIndex='1000';const maxX=Math.max(pad,innerWidth-r.width-pad),maxY=Math.max(pad,innerHeight-r.height-pad);let x=pad+Math.random()*Math.max(1,maxX-pad),y=pad+Math.random()*Math.max(1,maxY-pad);if(Math.abs(x-r.left)<100&&Math.abs(y-r.top)<70){x=(x+innerWidth*.45)%maxX;y=(y+innerHeight*.45)%maxY}noBtn.style.left=Math.max(pad,Math.min(x,maxX))+'px';noBtn.style.top=Math.max(pad,Math.min(y,maxY))+'px';$('tease').textContent=['Hehe, too slow! 😜','Nope, try again! 💨','That button has places to be! 🏃‍♀️','Are you sure? 👀','The YES button looks friendlier… 💗'][(noCount-1)%5];}
+noBtn.addEventListener('click',dodgeNo);noBtn.addEventListener('touchstart',e=>{e.preventDefault();dodgeNo(e)},{passive:false});
+$('yesBtn').addEventListener('click',()=>{const gate=$('gate');gate.style.transition='opacity .4s';gate.style.opacity='0';setTimeout(()=>{gate.style.display='none';$('main').style.display='block';scrollTo(0,0);burst(18)},400)});
+$('secretBtn').addEventListener('click',()=>{const n=$('secretNote'),open=n.style.display==='block';n.style.display=open?'none':'block';$('secretBtn').textContent=open?'Psst… open your secret note 🔐':'Awww, close my secret note 💌';if(!open)burst(8)});
+function burst(n){const icons=['💗','💕','💖','💘','✨','🎉'];for(let i=0;i<n;i++){const el=document.createElement('span');el.className='floaty';el.textContent=icons[Math.floor(Math.random()*icons.length)];el.style.left=Math.random()*100+'vw';el.style.fontSize=(16+Math.random()*20)+'px';el.style.animationDuration=(2.3+Math.random()*2)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),4700)}}
+const questions=[
+ {emoji:'🎭',q:'Who is more dramatic?',answers:['Ishika, obviously 🙄','Naman, 100% 😂','Both of us 🎭','Let’s not expose anyone 🤐'],responses:['The drama queen has entered the chat 👑','Naman? Dramatic? Never… allegedly 😭','A power couple of drama. Iconic. 🎬','Smart move. Lawyers have been notified 🤐']},
+ {emoji:'⚖️',q:'Who usually wins an argument?',answers:['Ishika, case closed 👑','Naman with his logic 🤓','Nobody; we forget why we argued 😂','We settle it with food 🍟'],responses:['The court recognises Ishika as always right. 👩‍⚖️','Objection! Naman has submitted 47 slides 🤓','The argument has been lost to the snack dimension 😂','Honestly, food fixes most things 🍟']},
+ {emoji:'💗',q:'Who is secretly more obsessed with the other?',answers:['Ishika 👀','Naman, caught in 4K 📸','Equal levels of obsessed 🫶','The answer is classified 🤫'],responses:['Oh? Someone is exposing herself today 👀','Caught in 4K. Naman, please explain yourself 📸','Mutual cuteness detected. No cure available 🫶','Top secret. The birthday committee respects that 🤫']}
+];
+let qIndex=0;
+function showQuestion(){const q=questions[qIndex];$('quizProgress').textContent=`Question ${qIndex+1} of ${questions.length}`;$('quizEmoji').textContent=q.emoji;$('quizQuestion').textContent=q.q;$('answers').innerHTML='';q.answers.forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=a;b.addEventListener('click',()=>chooseAnswer(i));$('answers').appendChild(b)});$('quizFeedback').style.display='none';$('quizNext').style.display='none';$('quizQuestion').style.display='block';$('answers').style.display='grid';$('quizEmoji').style.display='block';$('quizProgress').style.display='block'}
+function chooseAnswer(i){const q=questions[qIndex];[...$('answers').children].forEach(b=>b.disabled=true);$('quizFeedback').textContent=q.responses[i];$('quizFeedback').style.display='block';$('quizNext').textContent=qIndex===questions.length-1?'Reveal my result 🎁':'Next question →';$('quizNext').style.display='inline-block';burst(4)}
+$('quizNext').addEventListener('click',()=>{if(qIndex<questions.length-1){qIndex++;showQuestion()}else{$('quizProgress').style.display='none';$('quizEmoji').style.display='none';$('quizQuestion').style.display='none';$('answers').style.display='none';$('quizFeedback').style.display='none';$('quizNext').style.display='none';$('quizResult').style.display='block';$('resultText').textContent='You passed the Naman-certified cuteness test, Ishika. Your official score: 100% adorable. 💗';burst(22)}});
+$('confettiBtn').addEventListener('click',()=>{$('prize').style.display='block';burst(35);$('confettiBtn').textContent='Prize unlocked! 💝'});
+$('wishBtn').addEventListener('click',()=>{$('wishMessage').style.display='block';burst(30);$('wishBtn').textContent='Wish delivered! 💖'});
+showQuestion();
+</script>
+</body>
+</html>
+'''
+path = Path("/mnt/data/ishika_birthday_v2.html")
+path.write_text(html, encoding="utf-8")
+# quick basic integrity checks
+assert "<!DOCTYPE html>" in html and "Naman quiz" in html and "catch-heart" not in html
+assert html.count("<script>") == html.count("</script>") == 1
+print(f"Created {path} ({path.stat().st_size:,} bytes).")
