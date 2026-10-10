@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-from pathlib import Path
-import os
-
-html = r'''<!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -93,12 +88,4 @@ $('wishBtn').addEventListener('click',()=>{$('wishMessage').style.display='block
 showQuestion();
 </script>
 </body>
-</html>
-'''
-path = Path("/mnt/data/ishika_birthday_v2.html")
-path.write_text(html, encoding="utf-8")
-# quick basic integrity checks
-assert "<!DOCTYPE html>" in html and "Naman quiz" in html and "catch-heart" not in html
-assert html.count("<script>") == html.count("</script>") == 1
-print(f"Created {path} ({path.stat().st_size:,} bytes).")
 </html>
